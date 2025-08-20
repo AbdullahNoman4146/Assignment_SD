@@ -21,6 +21,10 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+.article-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
 
 .pagination {
   margin-top: 20px;
@@ -37,6 +41,11 @@
   transition: background 0.3s, transform 0.2s;
 }
 
+.pagination button:hover {
+  background: #e3a72f;
+  color: white;
+  transform: translateY(-2px);
+}
 
 .pagination button.active {
   background: #af7004;
