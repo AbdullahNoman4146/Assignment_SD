@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Profile from "./pages/Profile";
+import Articles from "./pages/Articles";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-function App() {
+const App = () => {
+  const [activePage, setActivePage] = useState("profile");
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="dashboard-container">
+
+      <div className={`main-content ${isSidebarOpen ? "with-sidebar" : "collapsed-sidebar"}`}>
+        {activePage === "profile" && <Profile />}
+        {activePage === "articles" && <Articles />}
+      </div>
+
+      <div className={`sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
+        <button
+          className="toggle-btn"
+          onClick={() => setSidebarOpen(!isSidebarOpen)}
         >
-          Learn React
-        </a>
-      </header>
+          {isSidebarOpen ? <FaChevronRight /> : <FaChevronLeft />}
+        </button>
+
+        {isSidebarOpen && (
+          <ul>
+            <li onClick={() => setActivePage("profile")}>Profile</li>
+            <li onClick={() => setActivePage("articles")}>My Articles</li>
+          </ul>
+        )}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
